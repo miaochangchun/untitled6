@@ -43,7 +43,7 @@ public class MoneyQryServlet extends HttpServlet{
         }
         req.setAttribute("moneyQry", money);
 
-        
+
 
         req.getRequestDispatcher("/result.jsp").forward(req, resp);
     }
