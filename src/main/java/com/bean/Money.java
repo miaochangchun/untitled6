@@ -1,5 +1,8 @@
 package com.bean;
 
+/**
+ * 资金查询类
+ */
 public class Money {
     private String accountNo;
     private Double zye;              //总余额
