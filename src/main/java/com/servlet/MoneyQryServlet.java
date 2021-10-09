@@ -11,13 +11,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class MoneyQryServlet extends HttpServlet{
@@ -29,17 +25,18 @@ public class MoneyQryServlet extends HttpServlet{
         String url2 = "http://101.226.207.134:8080/position/detail";
 
 
-        InputStream path = this.getClass().getResourceAsStream("/money.json");
-        BufferedReader reader = new BufferedReader(new InputStreamReader(path));
-        String string = null;
-        String str1 = "";
-        while((string = reader.readLine()) != null){
-//            System.out.println(string);
-            str1 += string;
-        }
-        JSONObject jsonObject = JSON.parseObject(str1);
+//        InputStream path = this.getClass().getResourceAsStream("/money.json");
+//        BufferedReader reader = new BufferedReader(new InputStreamReader(path));
+//        String string = null;
+//        String str1 = "";
+//        while((string = reader.readLine()) != null){
+////            System.out.println(string);
+//            str1 += string;
+//        }
+//        JSONObject jsonObject = JSON.parseObject(str1);
+
         //查资金汇总
-//        JSONObject jsonObject = JSON.parseObject(Hello.sendGet(url, "accountNo=" + accountNo));
+        JSONObject jsonObject = JSON.parseObject(Hello.sendGet(url, "accountNo=" + accountNo));
         JSONObject jsonObject0 = JSONObject.parseObject(jsonObject.get("op").toString());
         DecimalFormat df = new DecimalFormat("0.00");
         Money money = new Money();
@@ -67,16 +64,16 @@ public class MoneyQryServlet extends HttpServlet{
 
         //持仓汇总
 
-        InputStream path2 = this.getClass().getResourceAsStream("/position.json");
-        BufferedReader reader2 = new BufferedReader(new InputStreamReader(path2));
-        String string2 = null;
-        StringBuffer sbuffer = new StringBuffer();
-        while((string2 = reader2.readLine()) != null){
-            sbuffer.append(string2);
-        }
-        JSONObject jsonObject1 = JSON.parseObject(sbuffer.toString());
+//        InputStream path2 = this.getClass().getResourceAsStream("/position.json");
+//        BufferedReader reader2 = new BufferedReader(new InputStreamReader(path2));
+//        String string2 = null;
+//        StringBuffer sbuffer = new StringBuffer();
+//        while((string2 = reader2.readLine()) != null){
+//            sbuffer.append(string2);
+//        }
+//        JSONObject jsonObject1 = JSON.parseObject(sbuffer.toString());
 
-//        JSONObject jsonObject1 = JSON.parseObject(Hello.sendGet(url2, "accountNo=" + accountNo));
+        JSONObject jsonObject1 = JSON.parseObject(Hello.sendGet(url2, "accountNo=" + accountNo));
         JSONObject jsonObject2 = JSONObject.parseObject(jsonObject1.get("op").toString());
         List<Position> list = new ArrayList<>();
         if (jsonObject2.get("code").toString().equals("Y")){

@@ -12,4 +12,13 @@
     <servlet-name>moneyQryServlet</servlet-name>
     <url-pattern>/servlet/moneyQryServlet</url-pattern>
   </servlet-mapping>
+
+  <servlet>
+    <servlet-name>transMoneyServlet</servlet-name>
+    <servlet-class>com.servlet.TransMoneyServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>transMoneyServlet</servlet-name>
+    <url-pattern>/servlet/transMoneyServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

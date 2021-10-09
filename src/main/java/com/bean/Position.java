@@ -12,10 +12,10 @@ public class Position {
     private Integer kysl;           //可用数量
     private Integer zsl;            //持仓数量
     private String stockName;       //合约名称
-    private Integer djsl;
+    private Integer djsl;           //冻结数量
     private Double cbj;             //成本价
-    private Double zcb;
-    private Integer kcsl;
+    private Double zcb;             //总成本
+    private Integer kcsl;           //开仓数量
     private Double yk;              //盈亏金额
     private Double nowPrice;        //现价
     private Double bzjByRealTime;   //实时保证金

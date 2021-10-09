@@ -3,19 +3,87 @@
 <%@ page import="com.bean.Position"%>
 <%@ page import="java.util.ArrayList"%>
 <html>
+<head>
+    <style type="text/css">
+    html {
+        font-family: sans-serif;
+        -ms-text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+        margin: 10px;
+    }
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+
+    td,th {
+        padding: 0;
+    }
+
+    .pure-table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        empty-cells: show;
+        border: 1px solid #cbcbcb;
+    }
+
+    .pure-table caption {
+        color: #000;
+        font: italic 85%/1 arial,sans-serif;
+        padding: 1em 0;
+        text-align: center;
+    }
+
+    .pure-table td,.pure-table th {
+        border-left: 1px solid #cbcbcb;
+        border-width: 0 0 0 1px;
+        font-size: inherit;
+        margin: 0;
+        overflow: visible;
+        padding: .5em 1em;
+    }
+
+    .pure-table thead {
+        background-color: #e0e0e0;
+        color: #000;
+        text-align: left;
+        vertical-align: bottom;
+    }
+
+    .pure-table td {
+        background-color: transparent;
+    }
+
+    .pure-table-bordered td {
+        border-bottom: 1px solid #cbcbcb;
+    }
+
+    .pure-table-bordered tbody>tr:last-child>td {
+        border-bottom-width: 0;
+    }
+    </style>
+</head>
 <body>
 <h2>Hello World!</h2>
     <%
         Money money = (Money) request.getAttribute("moneyQry");
         ArrayList<Position> list = (ArrayList) request.getAttribute("position");
     %>
-<form action="<%=request.getContextPath()%>/servlet/moneyQryServlet" method="post">
+<form style="float:left" action="<%=request.getContextPath()%>/servlet/moneyQryServlet" method="post">
     请输入账户<input type="text" name="account"  value=<%=money.getAccountNo()%>/>
     <input type="submit" value="查询" />
-    <br>
 </form>
-
-    <table border=1px align="center">
+<form action="<%=request.getContextPath()%>/transMoney.jsp" method="post">
+    <input type="hidden" name="zye" value="<%=money.getZye()%>"/>
+    <input type="hidden" name="account" value="<%=money.getAccountNo()%>"/>
+    <input type="submit" value="资金划转" />
+</form>
+    <br>
+    <table class="pure-table pure-table-bordered">
+        <thead>
                         <tr>
                             <th>总余额</th>
                             <th>可用保证金</th>
@@ -31,6 +99,8 @@
                             <th>实时已用保证金</th>
                             <th>总收益率</th>
                         </tr>
+        </thead>
+        <tbody>
                         <tr>
                             <th><%=money.getZye()%></th>
                             <th><%=money.getKyzj()%></th>
@@ -46,10 +116,12 @@
                             <th><%=money.getBzjByRealTime()%></th>
                             <th><%=money.getProfitRatio()%></th>
                         </tr>
+        </tbody>
     </table>
     <br>
     <br>
-    <table border=1px align="center">
+    <table class="pure-table pure-table-bordered">
+        <thead>
         <tr>
             <th>合约代码</th>
             <th>合约名称</th>
@@ -68,27 +140,30 @@
             <th>标的代码</th>
             <th>持仓天数</th>
         </tr>
-        <% for(int i=0; i<list.size(); i++){ %>
-        <tr>
-            <th><%=list.get(i).getCode()%></th>
-            <th><%=list.get(i).getStockName()%></th>
-            <th><%=list.get(i).getKysl()%></th>
-            <th><%=list.get(i).getZsl()%></th>
-            <th><%=list.get(i).getPositionType()%></th>
-            <th><%=list.get(i).getBzj()%></th>
-            <th><%=list.get(i).getExchange()%></th>
-            <th><%=list.get(i).getCbj()%></th>
-            <th><%=list.get(i).getYk()%></th>
-            <th><%=list.get(i).getNowPrice()%></th>
-            <th><%=list.get(i).getBzjByRealTime()%></th>
-            <th><%=list.get(i).getRemainDay()%></th>
-            <th><%=list.get(i).getExerciseDate()%></th>
-            <th><%=list.get(i).getCallOrPut()%></th>
-            <th><%=list.get(i).getUnderlyingCode()%></th>
-            <th><%=list.get(i).getExpectHoldDays()%></th>
-        </tr>
-        <% } %>
-    </center>
-
+        </thead>
+        <% if(list.size() == 0){ %>
+            <tbody><tr><td>没有持仓</td></tr></tbody>
+        <% }else{
+            for(int i=0; i<list.size(); i++){ %>
+                    <tbody><tr>
+                        <th><%=list.get(i).getCode()%></th>
+                        <th><%=list.get(i).getStockName()%></th>
+                        <th><%=list.get(i).getKysl()%></th>
+                        <th><%=list.get(i).getZsl()%></th>
+                        <th><%=list.get(i).getPositionType()%></th>
+                        <th><%=list.get(i).getBzj()%></th>
+                        <th><%=list.get(i).getExchange()%></th>
+                        <th><%=list.get(i).getCbj()%></th>
+                        <th><%=list.get(i).getYk()%></th>
+                        <th><%=list.get(i).getNowPrice()%></th>
+                        <th><%=list.get(i).getBzjByRealTime()%></th>
+                        <th><%=list.get(i).getRemainDay()%></th>
+                        <th><%=list.get(i).getExerciseDate()%></th>
+                        <th><%=list.get(i).getCallOrPut()%></th>
+                        <th><%=list.get(i).getUnderlyingCode()%></th>
+                        <th><%=list.get(i).getExpectHoldDays()%></th>
+                    </tr></tbody>
+                    <% }
+        }%>
 </body>
 </html>
