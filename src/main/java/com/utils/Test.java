@@ -19,35 +19,50 @@ public class Test {
         List<String> list = Hello.readTxtFileIntoStringArrList(path);
         for (int i = 0; i < list.size(); i++) {
 //            System.out.println(list.get(i));
-            String url = "http://101.226.207.134:8080/cj/historyList";
-            String param = "accountNo=" + list.get(i) + "&beginDay=" + "2021-10-11" +
-                    "&endDay=" +"2021-11-19" + "&pageNo=" + "1" + "&pageSize=" + "100000";
-            String str = Hello.sendGet(url, param);
-//        System.out.println(str);
-            JSONObject jsonObject = JSON.parseObject(str);
-            JSONObject jsonObject1 = jsonObject.getJSONObject("op");
-            if (jsonObject1.get("code").toString().equals("Y")){
-                JSONObject jsonObject2 = jsonObject.getJSONObject("data");
-//                System.out.println(jsonObject2.get("count").toString());
-                if (jsonObject2.get("count").toString() == "0"){
-                    System.out.println("没有历史成交数据");
-                }else{
-                    JSONArray jsonArray = jsonObject2.getJSONArray("securityOrderList");
-                    if (jsonArray.size() == 0){
-                        continue;
-                    }
-                    Set set = new HashSet();
-                    for (int j=0; j<jsonArray.size(); j++){
-                        String date = jsonArray.getJSONObject(j).get("cjsj").toString().substring(0, 10);
-//                    System.out.println(date);
-                        set.add(date);
-                    }
-                    System.out.println("账户：" + list.get(i) + "，天数" + set.size());
-                }
-            }
+            int d = qryDate(list.get(i), "2021-10-11", "2021-11-19");
+            System.out.println("账户：" + list.get(i) + ", 天数：" + d);
         }
 
+    }
 
+    /**
+     *  查询历史成交中，某个账户的在某一时间段有成交的天数
+     * @param accountNo     账户
+     * @param beginDay      开始日期，日期格式为YYYY-MM-DD
+     * @param endDay        结束日期，日期格式为YYYY-MM-DD
+     *
+     * @return 返回有成交的天数
+     */
+    public static int qryDate(String accountNo, String beginDay, String endDay){
+        String url = "http://101.226.207.134:8080/cj/historyList";
+        String param = "accountNo=" + accountNo + "&beginDay=" + beginDay +
+                "&endDay=" + endDay + "&pageNo=" + "1" + "&pageSize=" + "100000";
+        String str = Hello.sendGet(url, param);
+//        System.out.println(str);
+        JSONObject jsonObject = JSON.parseObject(str);
+        JSONObject jsonObject1 = jsonObject.getJSONObject("op");
+        if (jsonObject1.get("code").toString().equals("Y")){
+            JSONObject jsonObject2 = jsonObject.getJSONObject("data");
+//                System.out.println(jsonObject2.get("count").toString());
+            if (jsonObject2.get("count").toString() == "0"){
+                System.out.println("没有历史成交数据");
+                return 0;
+            }else{
+                JSONArray jsonArray = jsonObject2.getJSONArray("securityOrderList");
+                if (jsonArray.size() == 0){
+                    return 0;
+                }
+                Set set = new HashSet();
+                for (int j=0; j<jsonArray.size(); j++){
+                    String date = jsonArray.getJSONObject(j).get("cjsj").toString().substring(0, 10);
+//                    System.out.println(date);
+                    set.add(date);
+                }
+//                System.out.println("账户：" + list.get(i) + "，天数" + set.size());
+                return set.size();
+            }
+        }
+        return 0;
     }
 
 
