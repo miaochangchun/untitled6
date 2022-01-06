@@ -15,15 +15,28 @@ import java.util.Set;
 
 public class Test {
     public static void main(String[] args) {
-        String path = "D:\\java\\account.txt";
-        List<String> list = Hello.readTxtFileIntoStringArrList(path);
-        for (int i = 0; i < list.size(); i++) {
-//            System.out.println(list.get(i));
-            int d = qryDate(list.get(i), "2021-10-11", "2021-11-19");
-            System.out.println("账户：" + list.get(i) + ", 天数：" + d);
-        }
+//        String path = "D:\\java\\account.txt";
+//        List<String> list = Hello.readTxtFileIntoStringArrList(path);
+//        for (int i = 0; i < list.size(); i++) {
+////            System.out.println(list.get(i));
+//            int d = qryDate(list.get(i), "2021-10-11", "2021-11-19");
+//            System.out.println("账户：" + list.get(i) + ", 天数：" + d);
+//        }
 
+//        qryDate("100700838", "2021-10-11", "2021-12-31");
+        String str = qryOrderHistory("100700838", "2021-10-11", "2021-12-31");
+        System.out.println(str);
     }
+
+
+    public static String qryOrderHistory(String accountNo, String beginDay, String endDay){
+        String url = "http://101.226.207.134:8080/order/historyList";
+        String param = "accountNo=" + accountNo + "&beginDay=" + beginDay +
+                "&endDay=" + endDay + "&pageNo=" + "1" + "&pageSize=" + "100000";
+        return Hello.sendGet(url, param);
+    }
+
+
 
     /**
      *  查询历史成交中，某个账户的在某一时间段有成交的天数
@@ -38,7 +51,7 @@ public class Test {
         String param = "accountNo=" + accountNo + "&beginDay=" + beginDay +
                 "&endDay=" + endDay + "&pageNo=" + "1" + "&pageSize=" + "100000";
         String str = Hello.sendGet(url, param);
-//        System.out.println(str);
+        System.out.println(str);
         JSONObject jsonObject = JSON.parseObject(str);
         JSONObject jsonObject1 = jsonObject.getJSONObject("op");
         if (jsonObject1.get("code").toString().equals("Y")){
