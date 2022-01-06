@@ -1,4 +1,4 @@
-package com.bean;
+package com.bean.cj;
 import java.util.List;
 
 /**
@@ -10,7 +10,7 @@ import java.util.List;
 public class Data {
 
     private int count;
-    private List<CjList> securityOrderList;
+    private List<SecurityOrderList> securityOrderList;
     public void setCount(int count) {
         this.count = count;
     }
@@ -18,10 +18,10 @@ public class Data {
         return count;
     }
 
-    public void setSecurityOrderList(List<CjList> securityOrderList) {
+    public void setSecurityOrderList(List<SecurityOrderList> securityOrderList) {
         this.securityOrderList = securityOrderList;
     }
-    public List<CjList> getSecurityOrderList() {
+    public List<SecurityOrderList> getSecurityOrderList() {
         return securityOrderList;
     }
 

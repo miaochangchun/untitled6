@@ -1,4 +1,4 @@
-package com.bean;
+package com.bean.cj;
 import java.util.Date;
 
 /**
@@ -7,7 +7,7 @@ import java.util.Date;
  * @author bejson.com (i@bejson.com)
  * @website http://www.bejson.com/java2pojo/
  */
-public class CjList {
+public class SecurityOrderList {
 
     private String id;
     private String accountNo;

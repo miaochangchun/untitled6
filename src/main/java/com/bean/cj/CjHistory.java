@@ -1,4 +1,4 @@
-package com.bean;
+package com.bean.cj;
 
 /**
  * 历史成交表

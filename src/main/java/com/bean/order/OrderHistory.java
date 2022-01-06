@@ -1,5 +1,8 @@
-package com.bean;
+package com.bean.order;
 
+/**
+ * 历史委托类
+ */
 public class OrderHistory {
     private Op op;
     private Data data;
@@ -15,5 +18,13 @@ public class OrderHistory {
     }
     public Data getData() {
         return data;
+    }
+
+    @Override
+    public String toString() {
+        return "OrderHistory{" +
+                "op=" + op +
+                ", data=" + data +
+                '}';
     }
 }

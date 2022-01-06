@@ -1,13 +1,13 @@
-package com.bean;
-import java.util.*;
+package com.bean.order;
+import java.util.Date;
 
 /**
- * Auto-generated: 2022-01-06 17:16:23
+ * Auto-generated: 2022-01-06 20:26:44
  *
  * @author bejson.com (i@bejson.com)
  * @website http://www.bejson.com/java2pojo/
  */
-public class OrderList {
+class SecurityOrderList {
 
     private String id;
     private String accountNo;
@@ -36,7 +36,7 @@ public class OrderList {
     private String extra;
     private long qsDay;
     private String stockName;
-    private int sxyk;
+    private long sxyk;
     private Date updateTime;
     private Date createTime;
     private int unit;
@@ -231,10 +231,10 @@ public class OrderList {
         return stockName;
     }
 
-    public void setSxyk(int sxyk) {
+    public void setSxyk(long sxyk) {
         this.sxyk = sxyk;
     }
-    public int getSxyk() {
+    public long getSxyk() {
         return sxyk;
     }
 
@@ -273,4 +273,42 @@ public class OrderList {
         return stopOutMoney;
     }
 
+    @Override
+    public String toString() {
+        return "SecurityOrderList{" +
+                "id='" + id + '\'' +
+                ", accountNo='" + accountNo + '\'' +
+                ", combPositionId='" + combPositionId + '\'' +
+                ", code='" + code + '\'' +
+                ", ddlx='" + ddlx + '\'' +
+                ", side='" + side + '\'' +
+                ", status='" + status + '\'' +
+                ", cxbz='" + cxbz + '\'' +
+                ", isStopOut='" + isStopOut + '\'' +
+                ", wtsl=" + wtsl +
+                ", cdsl=" + cdsl +
+                ", cjsl=" + cjsl +
+                ", cjje=" + cjje +
+                ", wtjg=" + wtjg +
+                ", djje=" + djje +
+                ", htbh='" + htbh + '\'' +
+                ", exchange='" + exchange + '\'' +
+                ", djsl=" + djsl +
+                ", yj=" + yj +
+                ", ghf=" + ghf +
+                ", jsf=" + jsf +
+                ", reason='" + reason + '\'' +
+                ", wtsj=" + wtsj +
+                ", cjsj=" + cjsj +
+                ", extra='" + extra + '\'' +
+                ", qsDay=" + qsDay +
+                ", stockName='" + stockName + '\'' +
+                ", sxyk=" + sxyk +
+                ", updateTime=" + updateTime +
+                ", createTime=" + createTime +
+                ", unit=" + unit +
+                ", gameId='" + gameId + '\'' +
+                ", stopOutMoney='" + stopOutMoney + '\'' +
+                '}';
+    }
 }

@@ -1,4 +1,4 @@
-package com.bean;
+package com.bean.cj;
 
 /**
  * Auto-generated: 2022-01-06 16:3:17
