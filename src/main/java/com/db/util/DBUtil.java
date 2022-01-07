@@ -14,7 +14,7 @@ import java.sql.Statement;
  */
 public class DBUtil {
 
-    public static String db_url = "jdbc:mysql://120.253.219.58:53306/test?useUnicode=true&characterEncoding=utf8";
+    public static String db_url = "jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=utf8";
     public static String db_user = "mcc";
     public static String db_pass = "Mcc123456.";
 

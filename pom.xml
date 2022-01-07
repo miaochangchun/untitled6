@@ -51,6 +51,17 @@
       <artifactId>mysql-connector-java</artifactId>
       <version>5.1.25</version>
     </dependency>
+    <!--javaMail 发邮件-->
+    <dependency>
+      <groupId>javax.mail</groupId>
+      <artifactId>javax.mail-api</artifactId>
+      <version>1.5.6</version>
+    </dependency>
+    <dependency>
+      <groupId>com.sun.mail</groupId>
+      <artifactId>javax.mail</artifactId>
+      <version>1.5.3</version>
+    </dependency>
   </dependencies>
 
 
