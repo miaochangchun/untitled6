@@ -14,9 +14,9 @@ import java.sql.Statement;
  */
 public class DBUtil {
 
-    public static String db_url = "jdbc:mysql://localhost:3306/library?useUnicode=true&characterEncoding=utf8";
-    public static String db_user = "root";
-    public static String db_pass = "mcc135246";
+    public static String db_url = "jdbc:mysql://120.253.219.58:53306/test?useUnicode=true&characterEncoding=utf8";
+    public static String db_user = "mcc";
+    public static String db_pass = "Mcc123456.";
 
     public static Connection getConn () {
         Connection conn = null;

@@ -23,7 +23,7 @@ public class JsonToExcel {
 
         System.out.println(bean);
         Connection connection = DBUtil.getConn();
-        String sql = "insert into cj_securityorderlist values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        String sql = "insert into cj_securityorderlist values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement pstmt = connection.prepareStatement(sql);
         List<SecurityOrderList> lists = bean.getData().getSecurityOrderList();
         for(int i=0; i<lists.size(); i++){
@@ -36,13 +36,14 @@ public class JsonToExcel {
             pstmt.setInt(7, lists.get(i).getCjsl());
             pstmt.setInt(8, lists.get(i).getCjjj());
             pstmt.setString(9, lists.get(i).getCjbh());
-            pstmt.setString(10, lists.get(i).getExchange());
-            pstmt.setString(11, lists.get(i).getHtbh());
-            pstmt.setString(12,lists.get(i).getStockName());
-            pstmt.setTimestamp(13, new Timestamp(lists.get(i).getUpdateTime().getTime()));
-            pstmt.setTimestamp(14, new Timestamp(lists.get(i).getCreateTime().getTime()));
-            pstmt.setString(15, lists.get(i).getCjType());
-            pstmt.setInt(16, lists.get(i).getUnit());
+            pstmt.setLong(10, lists.get(i).getQsDay());
+            pstmt.setString(11, lists.get(i).getExchange());
+            pstmt.setString(12, lists.get(i).getHtbh());
+            pstmt.setString(13,lists.get(i).getStockName());
+            pstmt.setTimestamp(14, new Timestamp(lists.get(i).getUpdateTime().getTime()));
+            pstmt.setTimestamp(15, new Timestamp(lists.get(i).getCreateTime().getTime()));
+            pstmt.setString(16, lists.get(i).getCjType());
+            pstmt.setInt(17, lists.get(i).getUnit());
             pstmt.execute();
         }
 
